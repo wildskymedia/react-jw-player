@@ -57,6 +57,10 @@ function getPlayerOpts(opts) {
     playerOpts.image = image;
   }
 
+  if (customProps.related && typeof window.jwDefaults.related !== 'undefined') {
+    customProps.related = { ...window.jwDefaults.related, ...customProps.related }
+  }
+
   return _extends(playerOpts, customProps);
 }
 
