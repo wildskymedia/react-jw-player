@@ -5,6 +5,10 @@ function initialize({ component, player, playerOpts }) {
     component.eventHandlers.onBeforePlay(event, player);
   }
 
+  function _onAdComplete(event) {
+    component.props.onAdComplete(event, player);
+  }
+
   player.setup(playerOpts);
 
   const eventsToInitialize = {};
@@ -25,6 +29,7 @@ function initialize({ component, player, playerOpts }) {
   eventsToInitialize.play = component.eventHandlers.onPlay;
   eventsToInitialize.playlistItem = component.eventHandlers.onVideoLoad;
   eventsToInitialize.time = component.eventHandlers.onTime;
+  eventsToInitialize.adComplete = _onAdComplete;
 
   Object.keys(eventsToInitialize).forEach((event) => {
     player.on(event, eventsToInitialize[event]);

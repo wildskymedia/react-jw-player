@@ -19,6 +19,10 @@ function initialize(_ref) {
     component.eventHandlers.onBeforePlay(event, player);
   }
 
+  function _onAdComplete(event) {
+    component.props.onAdComplete(event, player);
+  }
+
   player.setup(playerOpts);
 
   var eventsToInitialize = {};
@@ -39,6 +43,7 @@ function initialize(_ref) {
   eventsToInitialize.play = component.eventHandlers.onPlay;
   eventsToInitialize.playlistItem = component.eventHandlers.onVideoLoad;
   eventsToInitialize.time = component.eventHandlers.onTime;
+  eventsToInitialize.adComplete = _onAdComplete;
 
   Object.keys(eventsToInitialize).forEach(function (event) {
     player.on(event, eventsToInitialize[event]);
